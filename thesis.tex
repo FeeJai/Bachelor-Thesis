@@ -1,0 +1,120 @@
+%%% %%% %%% %%%%%%%%%%%%%%%%%%%%%%%% %%% %%% %%%
+%%% %%% %%% (1) Defintions And Stuff %%% %%% %%%
+%%% %%% %%% %%%%%%%%%%%%%%%%%%%%%%%% %%% %%% %%%
+
+		%%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %%%
+		%%% Required Packages and Configurations %%%
+		%%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %%%
+		\RequirePackage{scrlfile}
+		\IfFileExists{../common/hpibpthesis.cls}{
+			\ReplaceFile{hpibpthesis.cls}{../common/hpibpthesis.cls}
+		}{}
+		
+		\documentclass{hpibpthesis}
+		\usepackage[htt]{hyphenat}
+		\include{extra/javascriptdefintion}
+		\setcounter{secnumdepth}{2}
+
+		%%% %%%%%%%%%%%%%%%%%%%%%%%%%% %%%
+		%%% Define Document Properties %%%
+		%%% %%%%%%%%%%%%%%%%%%%%%%%%%% %%%
+		\title{Historische Betriebssysteme für InstantLab}
+		\othertitle{Historic Operating Systems for InstantLab}
+		\author{Felix Jankowski}
+		\date{31. März 2014}
+		\tenderdate{31. März 2014}
+		\subject{Betriebssysteme und Middleware}
+		\place{Potsdam}
+		\professor{Prof. Dr. Polze}
+		\supervisors{Dipl-Inf. Christian Neuhaus}
+		\organisation{Hasso-Plattner-Institut an der Universität Potsdam}
+
+		%%% %%%%%%%%%%%%%%%%%%%%% %%%
+		%%% Define Chapter States %%%
+		%%% %%%%%%%%%%%%%%%%%%%%% %%%
+		%\definecontentblockstate{plan}{false}{0.5,0.5,0.5}{2cm}
+		%\definecontentblockstate{question}{false}{0.0,0.0,1.0}{2cm}
+		%\definecontentblockstate{research}{false}{1.0,0.0,0.0}{2cm}
+		%\definecontentblockstate{draft}{false}{0.0,0.6,0.1}{0cm}
+		%\definecontentblockstate{finish}{true}{0.0,0.6,0.1}{2cm}
+		%\definecontentblockstate{work}{false}{0.0,0.0,1.0}{2cm}
+
+		%%% %%%%%%%%%%%%%%%% %%%
+		%%% Define Shortcuts %%%
+		%%% %%%%%%%%%%%%%%%% %%%		
+		\newcommand{\todo}[1]{
+			\colorbox{black}{
+				\textcolor{white}{
+					\large{ TODO: #1 }
+				}
+			}
+		}
+		\newcommand{\note}[1]{
+			\colorbox{black}{
+				\textcolor{white}{
+					#1
+				}
+			}
+		}
+		\newcommand{\question}[1]{
+			\colorbox{red}{
+				\textcolor{white}{
+					FRAGE: #1
+				}
+			}
+		}
+		\newcommand{\idea}[1]{
+			\colorbox{blue}{
+				\textcolor{white}{
+					IDEE: #1
+				} 
+			}
+		}
+		
+		%%% %%%%%%%%%%%%%%%%%% %%%
+		%%% Load Glossary Data %%%
+		%%% %%%%%%%%%%%%%%%%%% %%%
+		\nocite{*}
+
+		\makeglossaries
+		\loadglsentries{extra/glossary}
+		%\bibliography{../common/bp2012m2}
+		\bibliography{extra/literatur}
+
+
+
+%%% %%% %%% %%%%%%%%%%%%%%%%% %%% %%% %%%
+%%% %%% %%% (2) Main Document %%% %%% %%%
+%%% %%% %%% %%%%%%%%%%%%%%%%% %%% %%% %%%
+\begin{document}
+
+		%%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %%%
+		%%% Load Initial Stuff (Titlepage, Contents, ...)  %%%
+		%%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %%%
+		\maketitle[0]
+		\singlespace
+		\include{extra/abstract}
+		\tableofcontents
+
+		%%% %%%%%%%%%%%%%%%%%%%%%%%%%% %%%
+		%%% Load Main Document Content %%%
+		%%% %%%%%%%%%%%%%%%%%%%%%%%%%% %%%
+		\include{content/1introduction}
+		\include{content/2challenges}
+		\include{content/3implementation}
+		\include{content/4experiments}
+		\include{content/5evaluation}
+		\printbibliography[heading=bibnumbered]
+
+		%%% %%%%%%%%%%%%%%%%%%% %%%
+		%%% Load Appendix Stuff %%%
+		%%% %%%%%%%%%%%%%%%%%%% %%%
+		%\nocite{*}
+		%\bibliography{extra/literatur}
+		\appendix
+		%\include{extra/appendixdata}
+		\include{extra/selbststaendigkeit}
+		\printglossary[type=\acronymtype,title=Abkürzungen]
+		\listoffigures
+
+\end{document}

@@ -1,0 +1,29 @@
+% JavaScript syntax highlighting
+
+\usepackage{color}
+\usepackage[usenames,dvipsnames]{xcolor}
+
+\colorlet{stringcolor}{red!60!black}
+\definecolor{delim}{RGB}{20,105,176}
+
+\lstdefinelanguage{JavaScript}{
+    keywords={true, false, null},
+    keywordstyle=\color{blue}\bfseries,
+    identifierstyle=\color{black}\bfseries,
+    sensitive=false,
+    comment=[l]{//},
+    morecomment=[s]{/*}{*/},
+    commentstyle=\color{gray}\ttfamily,
+    stringstyle=\color{stringcolor}\ttfamily\bfseries,
+    morestring=[b]',
+    morestring=[b]",
+		showstringspaces=false,
+		captionpos=b,
+    literate=
+       *{:}{{{\color{delim}\bfseries{:}}}}{1}
+        {,}{{{\color{delim}\bfseries{,}}}}{1}
+        {\{}{{{\color{delim}\bfseries{\{}}}}{1}
+        {\}}{{{\color{delim}\bfseries{\}}}}}{1}
+        {[}{{{\color{delim}\bfseries{[}}}}{1}
+        {]}{{{\color{delim}\bfseries{]}}}}{1},
+}
