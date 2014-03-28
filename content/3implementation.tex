@@ -4,12 +4,27 @@
 \chapter{Setup}
 \label{chap:setup}
 
-Nachfolgend Handlungsanweisungen Betriebssysteme zwecks Nachvollziehbarkeit
-
+	In diesem Kapitel wird beschrieben, wie ausgewählte historische Betriebssysteme im Rahem dieser Arbeit wieder lauffähig gemacht wurden. Als Hypervisor kam, sofern nicht anderweitig vermerkt, VMWare Fusion Professional Version 6.0.2 auf Mac OS 10.9.2 zum Einsatz. 
+	Die VMs werden zusammen mit dieser Arbeit eingereicht.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{DOS 1.0}
+\section{PC DOS 1.10}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+	MS DOS 1.0 stellt das erste Betriebssystem von Microsoft für die 8086-CPU dar. Es entstand durch eine Portierung von Tim Patersons QDOS auf den IBM PC und wurde mit diesem unter dem Namen IBM PC DOS vertrieben. \cite{WinHistory}
+	Beim hier verwendeten PC DOS 1.10 handelt es sich um eine fehlerbereinigte, im Juli '82 veröffentlichte Version, die technisch MS DOS 1.25 entspricht. 
+	Dieses Betriebssystem stelltgrößtenteils einen Nachbau von CP/M dar und war, außer durch das Vorhandensein des Dateisystems \gls{FAT}, wenig innovativ.
+	Da es jedoch die Grundlage für den Erfolg von Microsoft und somit für alle späteren Betriebssysteme bildet, wird es in dieser Arbeit behandelt.
+
+	DOS unterstützt in der Version 1 noch keine Festplatten und kann lediglich 5,25" Disketten bis 160 KB adressieren. \cite{WinHistory}
+	Unter anderem aufgrund dieser Einschränkungen kann dieses Betriebssystem nicht mit zeitgemäßen Hypervisoren ausgeführt werden, statt dessen muss ein vollwertiger CPU- bzw. PC-Emulator wie Bochs oder QEMU verwendet werden. 
+	 \\  \\
+	Im "`Endangered Software Archive"', welches unter der \url{http://www.mirrors.org/archived_software/www.techknight.com/esa/default.htm} verfügbar ist, befindet sich eine mit dem "`Disk Image Archiver"' erstellte Kopie der originalen PC DOS 1.10 Startdiskette. 
+	Mit einem Hex-Editor lässt sich aus dem proprietären .dim-Format eine Datei mit dem Inhalt der Diskette erstellen und das Betriebssystem in Bochs booten.
+	Dieser Prozess ist in \cite{PCMinistry} beschrieben:
+
+	Leider sind auch hier bei weitem nicht alle Funktionen des Betriebssystems benutzbar, da MS DOS sämtliche I/O-Operationen über die BIOS-Routinen durchführt.
+	Das im originalen IBM PC verwendete BIOS unterscheidet sich jedoch signifikant von der "`BIOS Boot Specification"' vom 11. Januar 1996 und ist daher mit dem verwendeten Plex86/Bochs VGABios nicht kompatibel.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
