@@ -219,9 +219,9 @@
 
   \bigskip
 
-  \begin{LARGE} \textbf{''\gettitle''} \end{LARGE}
+  \begin{LARGE} \textbf{\gettitle} \end{LARGE}
 
-  \begin{large} \textbf{''\getothertitle''} \end{large}
+  \begin{large} \textbf{\getothertitle} \end{large}
 
   \bigskip
 }
