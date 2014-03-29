@@ -21,7 +21,7 @@
 
 	\begin{figure}[h]
 		\begin{center}
-			\includegraphics[width=0.6\textwidth]{img/DOS110hex}
+			\includegraphics[width=0.55\textwidth]{img/DOS110hex}
 			\caption{Ansicht des PC DOS 1.10 Bootsektors im Hex-Editor}
 			\label{fig:screenshot-hexeditor110}
 		\end{center}
@@ -62,10 +62,54 @@
 	Leider sind auch hier bei weitem nicht alle Funktionen des Betriebssystems benutzbar, da MS DOS sämtliche I/O-Operationen über die BIOS-Routinen durchführt.
 	Das im originalen IBM PC verwendete BIOS unterscheidet sich jedoch signifikant von der "`BIOS Boot Specification"' vom 11. Januar 1996 und ist daher mit dem verwendeten Plex86/Bochs VGABios nicht kompatibel.
 
+\newpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{DOS 5.0 \& Windows 2.11}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+	MS DOS 5.0 erschien im im Juni 1991.
+	In den 10 Jahren seit der Veröffentlichung von PC-DOS 1.0 hatten sich zahlreiche Veränderungen ergeben. 
+	Das Betriebssystem konnte nun auf Festplatten installiert werden, unterstütze 3,5"-Diskettenlaufwerke mit 720 KB, kannte Verzeichnisse in FAT, und konnte mittels Expanded Memory Specificatgion Arbeitsspeicher von mehr als 1 MB adressieren. 
+
+	Windows 2.11 stellte einen Meilenstein dar, da es das erste Microsoft-Betriebssystem war das den protected mode des 386er Prozessors benutzte. Zudem bot es VGA-Unterstützung und neben kooperativem Multitasking auch die Möglichkeit, Fenster überlappen zu lassen.
+
+	\begin{figure}[p]
+		\begin{center}
+			\includegraphics[width=\textwidth]{img/WIN211_2}
+			\caption{Windows 2.11 mit Excel und einigen Standardprogrammen}
+			\label{fig:screenshot-win211excel}
+		\end{center}
+	\end{figure}
+
+	Im Rahmen dieser Arbeit wurden DOS 5.0 und Windows 2.11 auf 3,5" -Disketten gebraucht erworben, zudem ein USB-Floppylaufwerk bezogen.
+	Leider gelang es nicht, diese originalen Disketten mit je 720 KB ("`Double Density"') auszulesen, da alle heutigen Betriebssysteme nur noch das Ansprechen von 1,44 MB-Datenträgern ("`High Density"') beherrschen.
+	Versuche, den Inhalt der Disketten auszulesen schlagen daher mit der Meldung $I/O-Error$ fehl.
+	Mit einem zufällig bei Autor noch vorhandenen Rechner mit Windows 95 die Daten auszulesen, war ebenfalls nicht erfolgreich, da das integrierte Diskettenlaufwerk durch Alterung nicht mehr funktionierte.
+
+	Images von beiden Systemen sind jedoch bei WinWorld\footnote{\url{http://wdl2.winworldpc.com/Abandonware\%20Operating\%20Systems/PC/DOS/Microsoft/}}, einem selbsternannten Online-Museum für Software verfügbar.
+	Diese Images können in einer virtuellen Maschine als Diskettenlaufwerk gebootet werden, wenn als Betriebssystem MS-DOS konfiguriert und eine IDE-Festplatte mit weniger als 32 MB angelegt wird.
+	Die Installation und der Betrieb von MS-DOS funktoinieren problemlos, allerdings kann nur RAM bis 1 MB adressiert werden.
+	Dies gestaltet den Betrieb von Windows 2.11 kompliziert, aber nicht unmöglich.
+	Bei der Installation muss explizit ausgewählt werden, Windows ohne extended memory installieren zu wollen, dann gelingt der Start.
+
+	Einer der Hauptgründe für den Betrieb von Windows in der Version 2 war die Notwendigkeit, Excel ausführen zu müssen.
+	Excel bringt eine eingeschränkte Windows-Runtime mit, damit es auch ohne eine Lizenz für Windows auf DOS-Rechnern ausgeführt werden kann.
+	Es läuft jedoch besser unter einer Vollversion von Windows. 
+	Zudem lassen sich damit bspw. Kalendereinträge übernehmen und Daten aus anderen Prozessen  kopieren.
+	Aufgrund des historischen Kontexts, wird mit dieser VM eine Installation von Excel 2.1d mitgeliefert.
+
+	Bei der Installation von Excel fällt auf, dass es in den gleichen Ordner wie Windows installiert werden muss (i.d.R. $C:\backslash{}Windows$). Zudem bringt es ein Programm namens $MemSet$ mit, welches den erweiterten Arbeitsspeicher konfiguriert und neue RAM-Treiber installiert. Mit diesem gelingt auch die Benutzung von RAM jenenseits der 1 MB.
+
+
+
+	\begin{figure}[p]
+		\begin{center}
+			\includegraphics[width=0.7\textwidth]{img/WIN211_1}
+			\caption{Warnung beim Start von Windows 2.11 anch der Installation von Excel}
+			\label{fig:screenshot-win211error}
+		\end{center}
+	\end{figure}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
