@@ -4,24 +4,49 @@
 \chapter{Experimente}
 \label{chap:experiments}
 
-Was tun?
-Was beobachten?
-Aufbau?
-erwartetes Verhalten?
+In diesem Kapitel werden die einzelnen Experimente beschrieben, mit denen einige Neuerungen und auch Probleme der jeweiligen Version getestet werden können. Es soll später als Experimentierhandbuch verwendet werden können.
 
-Bspw. Übung: TSR durch Memory Abbild
+Jeder Abschnitt beschreit zunächst die notwendigen Vorbereitungen.
+Anschließgend folgt aus eine Serie von Handlungsanweisungen. Danach folgt eine Erklärung, des erwarteten Verhalten und wie dies beobachtet werden kann.
 
 
-Handlungsanweisung
-Erklärung was passiert ist
-Anweisung, wie man dies beobachten kann
+%Was tun?
+%Was beobachten?
+%Aufbau?
+%erwartetes Verhalten?
+
+%Bspw. Übung: TSR durch Memory Abbild
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{DOS 5.0}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-	\subsection{Busy Waiting}
 	\subsection{TSR}
+
+	Unter MS DOS konnten noch keine Anwendungen parallel ausgeführt werden. Insbesondere waren  Daemons oder Backgroundprozesse nicht vorgesehen.
+	Um ein ähnliches Verhalten zu erzielen, konnte man sich mit sogenannten TSRs, "`Teminate and Stay Resident"'-Programmen behelfen\footnote{Eine hervorragende Einführung in die Programmierung und die Funktionsweise von TSRs befindet sich unter: \url{https://courses.engr.illinois.edu/ece390/books/artofasm/CH18/CH18-1.html\#HEADING1-3}}. 
+
+	Eine sehr beliebte TSR war Sidekick, die unter anderm einen Taschenrechner und einen Kalender bereitstellte.
+
+	\begin{figure}[h]
+		\begin{center}
+			\includegraphics[width=0.8\textwidth]{img/dostsr}
+			\caption{TSR-Taschenrechner vor dem DOS-Editor}
+			\label{fig:screenshot-dostsr}
+		\end{center}
+	\end{figure}
+
+	
+
+	Starten 
+
+	\subsection{Busy Waiting}
+	
+	Starten Sie die MS DOS VM und beobachten Sie ihr Verhalten.
+	Wie viel CPU und Arbeitsspeicher verbraucht die VM und wie verändern sich die Parameter unter Last?
+
+	Dosidle
+
 	\subsection{DOS-Shell}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -55,7 +80,7 @@ Anweisung, wie man dies beobachten kann
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 	\subsection{NTFS}
-	Streams, Hiffen files
+	Streams, Hidden files
 	lange vs. kurze Dateinamen
 	mehrere Namen pro File
 
