@@ -85,7 +85,7 @@
 	Im Rahmen dieser Arbeit wurden DOS 5.0 und Windows 2.11 auf 3,5" -Disketten gebraucht erworben, zudem ein USB-Floppylaufwerk bezogen.
 	Leider gelang es nicht, diese originalen Disketten mit je 720 KB ("`Double Density"') auszulesen, da alle heutigen Betriebssysteme nur noch das Ansprechen von 1,44 MB-Datenträgern ("`High Density"') beherrschen.
 	Versuche, den Inhalt der Disketten auszulesen schlagen daher mit der Meldung $I/O-Error$ fehl.
-	Mit einem zufällig bei Autor noch vorhandenen Rechner mit Windows 95 die Daten auszulesen, war ebenfalls nicht erfolgreich, da das integrierte Diskettenlaufwerk durch Alterung nicht mehr funktionierte.
+	Mit einem zufällig bei Autor noch vorhandenen Rechner mit Windows 95 war es ebenfalls nicht möglich die Daten auszulesen, da das integrierte Diskettenlaufwerk durch Alterung nicht mehr funktionierte.
 
 	Images von beiden Systemen sind jedoch bei WinWorld\footnote{\url{http://wdl2.winworldpc.com/Abandonware\%20Operating\%20Systems/PC/DOS/Microsoft/}}, einem selbsternannten Online-Museum für Software verfügbar.
 	Diese Images können in einer virtuellen Maschine als Diskettenlaufwerk gebootet werden, wenn als Betriebssystem MS-DOS konfiguriert und eine IDE-Festplatte mit weniger als 32 MB angelegt wird.
@@ -106,17 +106,62 @@
 	\begin{figure}[p]
 		\begin{center}
 			\includegraphics[width=0.7\textwidth]{img/WIN211_1}
-			\caption{Warnung beim Start von Windows 2.11 anch der Installation von Excel}
+			\caption{Warnung beim Start von Windows 2.11 nach der Installation von Excel}
 			\label{fig:screenshot-win211error}
 		\end{center}
 	\end{figure}
 
+\newpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{DOS 6.0 \& Windows 3.11}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	Windows der dritten Generation war die erste auch bei Privatanwendern beliebte und kommerziell erfolgreiche Version des graphischen Betriebssystems von Microsoft.
+	Zusätzlich wurde bei Version 3.11 Netzwerkfunktionalität eingeführt.
+
+	Aus der gleichen Zeit stammt MS DOS der 6. Generation \cite{WinHistory}, eine stabile und zuverlässige Version, die unter anderem die Dateisystemkomprimierung DoubleSpace mitbringt.
+
+	Beide Systeme wurden in einem Set aus mehreren 1,44 MB Disketten ausgeliefert und fanden sich noch im Keller der Eltern des Autors.
+	Diese konnten problemlos mit einem USB-Floppylaufwerk und dem Befehl $dd$ in eine Image-Datei kopiert werden.
+	Trotz ihres Alters hatte keine der Disketten defekte Sektoren.
+
+		\begin{figure}[h]
+		\begin{center}
+			\includegraphics[width=0.7\textwidth]{img/win311disks.jpg}
+			\caption{Windows 3.11 und MS DOS 6.22 auf Disketten}
+			\label{fig:screenshot-win311disks}
+		\end{center}
+	\end{figure}
 
 
+	Stellt mal VMWare in den Kompatibilitätseinstellungen auf Version 8 des Hypervisors um, kennt es einen Modus für Windows 3.11, indem sich das Betriebssystem problemlos von den Diskettenimages installieren lässt. Leider gibt es keine VMWare Guest Additions für dieses Betriebssystem und somit funktionieren nach Installation weder Sound, Netzwerk noch CDROM\footnote{Die in diesem Kapitel installierten Treiber wurden alle von \cite{VMDriver} geladen}.
+
+	Da sowohl MS DOS als auch Windows vor Version 95 im Leerlauf busy waiting statt dem $HLT$-Befehl verwenden, ist die CPU der virtuellen Maschine zudem immer vollständig ausgelastet.
+	Dies ist besonders auf einem zentralen Cloud-System, bei dem viele virtuelle Maschinen parallel ausgeführt werden sollen sehr störend, da jede VM die ihr zur Verfügung stehenden Ressourcen somit voll belegt, auch wenn sie nicht benutzt werden.
+	Eine Lösung findet sich auf \cite{VMDriver} mit dem Programm "`CPUidle for DOS"' von Marton Balog.
+	Bei diesem handelt es sich um eine TSR, die das busy waiting von MS DOS überschreibt, statt dessen die CPU in dieser Zeit anhält und durch Interrupts wieder aufweckt.
+	Gleiches bewirkt unter Windows 3.11 der Treiber "`WQGHLT"' aus der selben Quelle.
+
+	Die Netzwerkfuntkionalität kann aktiviert werden, indem der Treiber für die "`Advanced Micro Devices PCNET Family"' nachinstalliert wird.
+	Zudem muss explizit der TCP/IP-Protokolltreiber installiert werden, da Windows 3.11 standardmäßig nur die veralteteten Protokollen IPX/SPX und NetBEUI unterstützt.
+
+	Leider nicht mehr aktivieren lässt sich die Unterstützung für Audioausgabe, da VMWare die Karte SoundBlaster16 nur bis zur Version 6 emuliert.
+	Neuere Hypervisoren emulieren leistungsfährigere Soundkarten, für die es aber keine Treiber mehr für Windows 3.11 gibt.
+
+	Bei WinWorld finden sich außerdem auf diesem Betriebssystem lauffähige Versionen von Internet Explorer und Netscape Navigator.
+	Letzterer stürzt aufgrund eines Bugs jedoch im Hypervisor und auf neueren CPUs als Pentium ab, dabei bringt er Windows komplett zum Absturz und ist ein gutes Beispiel für den fehlenden Speicherschutz.
+	Der Internet Explorer lässt sich hingegen in Version 5.0 installieren und ausführen. 
+	Hiermit lässt sich ansatzweise im Internet surfen, jedoch werden nahezu alle Webseiten werden fehlerhaft dargestellt, da noch kein CSS der Version 2 unterstützt wird und außerdem nur Seiten bis zu einer größe von 1 MB verarbeitet werden können. 
+
+	\begin{figure}[h]
+		\begin{center}
+			\includegraphics[width=\textwidth]{img/win311screen}
+			\caption{Windows 3.11 mit Minesweeper und Internet Explorer 5.0}
+			\label{fig:screenshot-win311apps}
+		\end{center}
+	\end{figure}
+
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Windows NT 3.51}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
