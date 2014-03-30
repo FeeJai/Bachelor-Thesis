@@ -19,14 +19,6 @@
 	DOS unterstützt in der Version 1 noch keine Festplatten und kann lediglich 5,25" Disketten bis 160 KB adressieren. \cite{WinHistory}
 	Unter anderem aufgrund dieser Einschränkungen kann dieses Betriebssystem nicht mit zeitgemäßen Hypervisoren ausgeführt werden, statt dessen muss ein vollwertiger CPU- bzw. PC-Emulator wie Bochs oder QEMU verwendet werden. 
 
-	\begin{figure}[h]
-		\begin{center}
-			\includegraphics[width=0.55\textwidth]{img/DOS110hex}
-			\caption{Ansicht des PC DOS 1.10 Bootsektors im Hex-Editor}
-			\label{fig:screenshot-hexeditor110}
-		\end{center}
-	\end{figure}
-
 	Im "`Endangered Software Archive"', welches unter der URL \url{http://www.mirrors.org/archived_software/www.techknight.com/esa/default.htm} verfügbar ist, befindet sich eine mit dem "`Disk Image Archiver"' erstellte Kopie der originalen PC DOS 1.10 Startdiskette. 
 	Mit einem Hex-Editor lässt sich aus dem proprietären .dim-Format eine Datei mit dem Inhalt der Diskette erstellen und das Betriebssystem in Bochs booten.
 	Dieser Prozess ist in \cite{PCMinistry} beschrieben:
@@ -38,10 +30,18 @@
 	Daher verweigert der Emulator den Bootvorgang.
 	Ändert man mit einem Hex-Editor die Datei und schreibt 55AA an das Ende des Bootsektors, übergibt das BIOS die Kontrolle mittels JMP-Befehl an den in dem Image liegenden Code. Leider stürzt das System dann beim Bootvorgang ab.
 
+	\begin{figure}[h]
+		\begin{center}
+			\includegraphics[width=0.7\textwidth]{img/DOS110hex}
+			\caption{Ansicht des PC DOS 1.10 Bootsektors im Hex-Editor}
+			\label{fig:screenshot-hexeditor110}
+		\end{center}
+	\end{figure}
+
 	Glücklicherweise bietet Bochs bietet jedoch die Möglichkeit, die Überprüfung der Signatur zu deaktivieren und jeglichen Programmcode sofort zu booten, indem man \lstinline{floppy_bootsig_check: disabled=1} in das config file schreibt.
 	Ein funktionierendes config File wird unter dem Namen $bochs.txt$ mit dieser Arbeit ausgeliefert.
 	Hiermit lässt sich ein unverändertes Image von PC DOS 1.10 ausführen.
-	Hierzu muss bochs im entsprechenden Verzeichnis gestartet werden, die Option \lstinline{2. Read options from...} gewählt werden, mittels \lstinline{6. Begin simulation} der Emulator geladen werden und mit dem Befehl $continue$ die CPU gestartet werden.
+	Hierzu muss bochs im entsprechenden Verzeichnis gestartet werden, die Option \lstinline{2. Read options from ...} gewählt werden, mittels \lstinline{6. Begin simulation} der Emulator geladen werden und mit dem Befehl $continue$ die CPU gestartet werden.
 
 	\begin{figure}[p]
 		\begin{center}
@@ -70,11 +70,11 @@
 
 	MS DOS 5.0 erschien im im Juni 1991.
 	In den 10 Jahren seit der Veröffentlichung von PC-DOS 1.0 hatten sich zahlreiche Veränderungen ergeben. 
-	Das Betriebssystem konnte nun auf Festplatten installiert werden, unterstütze 3,5"-Diskettenlaufwerke mit 720 KB, kannte Verzeichnisse in FAT, und konnte mittels Expanded Memory Specificatgion Arbeitsspeicher von mehr als 1 MB adressieren. 
+	Das Betriebssystem konnte nun auf Festplatten installiert werden, unterstütze 3,5''-Diskettenlaufwerke mit 720 KB, kannte Verzeichnisse in FAT, und konnte mittels Expanded Memory Specificatgion Arbeitsspeicher von mehr als 1 MB adressieren. 
 
 	Windows 2.11 stellte einen Meilenstein dar, da es das erste Microsoft-Betriebssystem war das den protected mode des 386er Prozessors benutzte. Zudem bot es VGA-Unterstützung und neben kooperativem Multitasking auch die Möglichkeit, Fenster überlappen zu lassen.
 
-	\begin{figure}[p]
+	\begin{figure}[h]
 		\begin{center}
 			\includegraphics[width=\textwidth]{img/WIN211_2}
 			\caption{Windows 2.11 mit Excel und einigen Standardprogrammen}
@@ -82,7 +82,7 @@
 		\end{center}
 	\end{figure}
 
-	Im Rahmen dieser Arbeit wurden DOS 5.0 und Windows 2.11 auf 3,5" -Disketten gebraucht erworben, zudem ein USB-Floppylaufwerk bezogen.
+	Im Rahmen dieser Arbeit wurden DOS 5.0 und Windows 2.11 auf 3,5''-Disketten gebraucht erworben und zudem ein USB-Floppylaufwerk bezogen.
 	Leider gelang es nicht, diese originalen Disketten mit je 720 KB ("`Double Density"') auszulesen, da alle heutigen Betriebssysteme nur noch das Ansprechen von 1,44 MB-Datenträgern ("`High Density"') beherrschen.
 	Versuche, den Inhalt der Disketten auszulesen schlagen daher mit der Meldung $I/O-Error$ fehl.
 	Mit einem zufällig bei Autor noch vorhandenen Rechner mit Windows 95 war es ebenfalls nicht möglich die Daten auszulesen, da das integrierte Diskettenlaufwerk durch Alterung nicht mehr funktionierte.
@@ -103,7 +103,7 @@
 
 
 
-	\begin{figure}[p]
+	\begin{figure}[h]
 		\begin{center}
 			\includegraphics[width=0.7\textwidth]{img/WIN211_1}
 			\caption{Warnung beim Start von Windows 2.11 nach der Installation von Excel}
@@ -127,12 +127,11 @@
 
 		\begin{figure}[h]
 		\begin{center}
-			\includegraphics[width=0.7\textwidth]{img/win311disks.jpg}
+			\includegraphics[width=0.8\textwidth]{img/win311disks.jpg}
 			\caption{Windows 3.11 und MS DOS 6.22 auf Disketten}
 			\label{fig:screenshot-win311disks}
 		\end{center}
 	\end{figure}
-
 
 	Stellt mal VMWare in den Kompatibilitätseinstellungen auf Version 8 des Hypervisors um, kennt es einen Modus für Windows 3.11, indem sich das Betriebssystem problemlos von den Diskettenimages installieren lässt. Leider gibt es keine VMWare Guest Additions für dieses Betriebssystem und somit funktionieren nach Installation weder Sound, Netzwerk noch CDROM\footnote{Die in diesem Kapitel installierten Treiber wurden alle von \cite{VMDriver} geladen}.
 
@@ -142,17 +141,6 @@
 	Bei diesem handelt es sich um eine TSR, die das busy waiting von MS DOS überschreibt, statt dessen die CPU in dieser Zeit anhält und durch Interrupts wieder aufweckt.
 	Gleiches bewirkt unter Windows 3.11 der Treiber "`WQGHLT"' aus der selben Quelle.
 
-	Die Netzwerkfuntkionalität kann aktiviert werden, indem der Treiber für die "`Advanced Micro Devices PCNET Family"' nachinstalliert wird.
-	Zudem muss explizit der TCP/IP-Protokolltreiber installiert werden, da Windows 3.11 standardmäßig nur die veralteteten Protokollen IPX/SPX und NetBEUI unterstützt.
-
-	Leider nicht mehr aktivieren lässt sich die Unterstützung für Audioausgabe, da VMWare die Karte SoundBlaster16 nur bis zur Version 6 emuliert.
-	Neuere Hypervisoren emulieren leistungsfährigere Soundkarten, für die es aber keine Treiber mehr für Windows 3.11 gibt.
-
-	Bei WinWorld finden sich außerdem auf diesem Betriebssystem lauffähige Versionen von Internet Explorer und Netscape Navigator.
-	Letzterer stürzt aufgrund eines Bugs jedoch im Hypervisor und auf neueren CPUs als Pentium ab, dabei bringt er Windows komplett zum Absturz und ist ein gutes Beispiel für den fehlenden Speicherschutz.
-	Der Internet Explorer lässt sich hingegen in Version 5.0 installieren und ausführen. 
-	Hiermit lässt sich ansatzweise im Internet surfen, jedoch werden nahezu alle Webseiten werden fehlerhaft dargestellt, da noch kein CSS der Version 2 unterstützt wird und außerdem nur Seiten bis zu einer Größe von 1 MB verarbeitet werden können. \\
-
 	\begin{figure}[h]
 		\begin{center}
 			\includegraphics[width=\textwidth]{img/win311screen}
@@ -160,6 +148,21 @@
 			\label{fig:screenshot-win311apps}
 		\end{center}
 	\end{figure}
+
+	Die Netzwerkfuntkionalität kann aktiviert werden, indem der Treiber für die "`Advanced Micro Devices PCNET Family"' nachinstalliert wird.
+	Zudem muss explizit der TCP/IP-Protokolltreiber installiert werden, da Windows 3.11 standardmäßig nur die veralteteten Protokollen IPX/SPX und NetBEUI unterstützt.
+
+	Leider nicht mehr aktivieren lässt sich die Unterstützung für Audioausgabe, da VMWare die Karte SoundBlaster16 nur bis zur Version 6 emuliert.
+	Neuere Hypervisoren emulieren leistungsfährigere Soundkarten, für die es aber keine Treiber mehr für Windows 3.11 gibt.
+
+
+	Bei WinWorld finden sich außerdem auf diesem Betriebssystem lauffähige Versionen von Internet Explorer und Netscape Navigator.
+	Letzterer stürzt aufgrund eines Bugs jedoch im Hypervisor und auf neueren CPUs als Pentium ab, dabei bringt er Windows komplett zum Absturz und ist ein gutes Beispiel für den fehlenden Speicherschutz.
+	
+	Der Internet Explorer lässt sich hingegen in Version 5.0 installieren und ausführen. 
+	Hiermit lässt sich ansatzweise im Internet surfen, jedoch werden nahezu alle Webseiten werden fehlerhaft dargestellt, da noch kein CSS der Version 2 unterstützt wird und außerdem nur Seiten bis zu einer Größe von 1 MB verarbeitet werden können. \\
+
+
 
 \newpage
 
@@ -184,3 +187,9 @@ Die mitgeliegerte Windows 2000 VM wurde mit einem Datenträger von Maniac, dem S
 
 Windows 2000 wird von VMware vollständig unterstützt, alle notwendigen Treiber werden über die Guest Additions installiert und die Service Packs können von Microsoft herunter geladen werden.
 Auf die Installation wird daher an dieser Stelle nicht gesondert eingegangen.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Konvertierung in KVM und Integration ins InstantLab}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
