@@ -6,8 +6,9 @@
 
 In diesem Kapitel werden die einzelnen Experimente beschrieben, mit denen einige Neuerungen und auch Probleme der jeweiligen Version getestet werden können. Es soll später als Experimentierhandbuch verwendet werden können.
 
-Jeder Abschnitt beschreit zunächst die notwendigen Vorbereitungen.
-Anschließgend folgt aus eine Serie von Handlungsanweisungen. Danach folgt eine Erklärung, des erwarteten Verhalten und wie dies beobachtet werden kann.
+Jeder Abschnitt beschreibt zunächst die notwendigen Vorbereitungen.
+Anschließgend folgt eine Serie von Handlungsanweisungen.
+Schließlich folgt eine Erklärung des erwarteten Verhalten und Möglichkeiten diese zu Beobachten.
 
 
 %Was tun?
@@ -21,12 +22,12 @@ Anschließgend folgt aus eine Serie von Handlungsanweisungen. Danach folgt eine 
 \section{DOS 5.0}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+
 	\subsection{TSR}
 
 	Unter MS DOS konnten noch keine Anwendungen parallel ausgeführt werden. Insbesondere waren  Daemons oder Backgroundprozesse nicht vorgesehen.
-	Um ein ähnliches Verhalten zu erzielen, konnte man sich mit sogenannten TSRs, "`Teminate and Stay Resident"'-Programmen behelfen\footnote{Eine hervorragende Einführung in die Programmierung und die Funktionsweise von TSRs befindet sich unter: \url{https://courses.engr.illinois.edu/ece390/books/artofasm/CH18/CH18-1.html\#HEADING1-3}}. 
-
-	Eine sehr beliebte TSR war Sidekick, die unter anderm einen Taschenrechner und einen Kalender bereitstellte.
+	Um zu kleinen Tools wie bspw. einem Taschenrechner wechseln zu können, ohne die eigentliche Anwendung beenden zu müssen, konnte man sich mit sogenannten TSRs, "`Teminate and Stay Resident"'-Programmen behelfen\footnote{Eine hervorragende Einführung in die Programmierung und die Funktionsweise von TSRs befindet sich unter: \url{https://courses.engr.illinois.edu/ece390/books/artofasm/CH18/CH18-1.html\#HEADING1-3}}.
+	%Ebenso waren die meisten Computerviren zu dieser Zeit TSRs. 
 
 	\begin{figure}[h]
 		\begin{center}
@@ -36,18 +37,39 @@ Anschließgend folgt aus eine Serie von Handlungsanweisungen. Danach folgt eine 
 		\end{center}
 	\end{figure}
 
-	
+	Eine sehr beliebte TSR war Borland Sidekick, die unter anderm einen Notizzettel, einen Taschenrechner und einen Kalender bereitstellte. Mit dem Befehl ctrl+alt konnte man diese jederzeit aufrufen.
 
-	Starten 
+	Machen Sie sich nun mit der Funktionsweise dieser TSR vertraut:
+	
+		\begin{itemize}
+			\item Starten Sie die VM und beenden Sie die DOS Shell. Notieren Sie zunächst den freien Speicher, der mit dem Befehl \texttt{mem} ausgegeben werden kann.
+			\item Starten Sie Sidekick (\texttt{$C:\backslash{}sk\backslash{}sk.com$}). Dieses Programm beendet sich sofort wieder. Überprüfen Sie erneut den freien Speicher. Wodurch kommt die Veränderung zustande?
+			\item Starten Sie ein anderes Programm, zum Beispiel den Standard DOS Texteditor \texttt{EDIT}. Testen Sie dabei die Verwendung der Funktionen von Sidekick. Wodurch gelingt es Sidekick, wieder in den Vordergrund zu treten, obwohl die CPU an eine andere Anwendung abgegeben wurde?
+			\item Was passiert bei der Verwendung einer TSR unter Windows?
+		\end{itemize}
+	  
 
 	\subsection{Busy Waiting}
-	
-	Starten Sie die MS DOS VM und beobachten Sie ihr Verhalten.
-	Wie viel CPU und Arbeitsspeicher verbraucht die VM und wie verändern sich die Parameter unter Last?
 
-	Dosidle
+	Obwohl seit dem 8088er vorhanden, benutzt MS DOS noch nicht die \texttt{HLT}-Instruction der x86 CPU.
+	
+	\begin{itemize}
+		\item Starten Sie die MS DOS VM und beobachten Sie ihr Verhalten. Beenden Sie hierzu die DOS Shell
+		\item Wie viel CPU und wie viel RAM verbraucht die VM? Wie verändern sich diese Parameter unter Last? Wie verhält sich MS DOS folglich im Leerlauf?
+		\item Starten Sie nun die Anwendung \texttt{DOSIDLE}. Um was für eine Anwendung handelt es sich?
+		\item Wie hat sich die Ressourcennutzung der VM durch den Start der Anwendung verändert? Wodurch könnte dies erreicht werden?
+	\end{itemize}
+
 
 	\subsection{DOS-Shell}
+
+	MS DOS wird in Version 5 wird mit einer an den Norton Commander angelehnten graphischen Shell ausgeliefert. Diese wird beim Start des Betriebssystems automatisch geladen.
+
+	\begin{itemize}
+		\item Machen Sie sich mit der Bedienung der DOS Shell vertraut. Benutzen Sie hierfür die $Alt$-Taste, um in die Menüs zu gelangen.
+		\item Wie können aus dieser Shell Anwendungen gestartet werden? Starten und beenden Sie den Basic Interpreter QBasic
+		\item Was passiert, wenn eine TSR, z.B. Sidekick aus der DOS Shell gestartet wird? 
+	\end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Windows 2.11}
@@ -55,14 +77,36 @@ Anschließgend folgt aus eine Serie von Handlungsanweisungen. Danach folgt eine 
 
 	\subsection{Koop. Multitasking}
 
+	Anders als unter MS DOS können unter Windows mehrere Anwendungen gleichzeitig ausgeführt werden. 
+	Dadurch ist die Verwendung von TSRs nicht mehr notwendig.
+
+	\begin{itemize}
+		\item Starten Sie Microsoft Windows 2.11 und machen Sie sich mit den mitgelieferten Applikationen vertraut.
+		\item Starten Sie Microsoft Excel und eine weitere Anwendung. Wie ist Copy \& Paste implementiert?
+		\item Was passiert beim Absturz einer Anwendung? Warum?
+	\end{itemize}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{DOS 6.0}
+\section{DOS 6.22}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 	\subsection{Extended Memory}
-	\subsection{DoubleSpace}
 
-	Volume vs. DIR
+	MS DOS verwendet den Real Mode der x86 CPU, indem diese aufgrund der Registerbreite maximal 1 MiB RAM adressieren kann. Davon stellt MS DOS bis zu 640kiB Anwendungen zur Verfügung. Ende der 80er war dies jedoch für die meisten Programme bereits deutlich zu wenig.
+
+	\begin{itemize}
+		\item Starten Sie Microsoft Windows 2.11 und machen Sie sich mit den mitgelieferten Applikationen vertraut.
+		\item Starten Sie Microsoft Excel und eine weitere Anwendung. Wie ist Copy \& Paste implementiert?
+		\item Was passiert beim Absturz einer Anwendung? Warum?
+	\end{itemize}
+
+	\subsection{DoubleSpace oder DriveSpace}
+
+	Ein häufiges Problem zur Zeit von MS DOS war der begrenze Speicherplatz. Mit MS DOS 6.0 wurde daher die Datenträgerkomprimierung DoubleSpace eingeführt.
+	Diese musste aus patentrechtlichen Gründen jedoch von Microsoft bald wieder entfernt werden und wurde mit DOS 6.22 durch DriveSpace, ein Programm mit ähnlicher Funktionsweise aber anderem Kompressionsalgorithmus ersetzt.
+
+		Volume vs. DIR
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Windows 3.11}
