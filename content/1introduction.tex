@@ -8,7 +8,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\section{Über die Evolution der Betriebsysteme}
 %\label{sec:evolution}
-\section{Betriebsystemlehveranstaltungen im Grundstudium}
+\section{Betriebsystemlehrveranstaltungen im Grundstudium}
 \label{sec:motivation}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -27,7 +27,8 @@
 		%Sicherheit
 		%Überlast
 
-		Diese Frage lässt sich recht gut beantworten, wenn man beispielsweise das Verhalten von Rechnern unter Ressourcenknappheit betrachtet. Hierbei existieren zahlreiche, auch für Anwendungsprogrammierer relevante Probleme, deren Lösung nur mit Fachwissen über die internen Mechanismen des verwendeten Betriebssystems möglich ist. 
+		Diese Frage lässt sich recht gut beantworten, wenn man beispielsweise das Verhalten von Rechnern unter Ressourcenknappheit betrachtet.
+		Hierbei existieren zahlreiche, auch für Anwendungsprogrammierer relevante Probleme, deren Lösung nur mit Fachwissen über die internen Mechanismen des verwendeten Betriebssystems möglich ist. 
 		Beispielsweise entstehen ohne Kenntnisse über Scheduling leicht Fehler im Bereich der Nebenläufigkeit, die nicht selten Programme durch Dead-Locks unbenutzbar machen und durch die Beeinflussung des Systems durch einen Debugger enorm schwer zu beheben sind (Heisenbugs).
 
 
@@ -50,35 +51,47 @@
 		Die anderen Themen der Lehrveranstaltung werden daher meist mittels praktischer Experimente vertieft.
 		Bei diesen lösen Studenten selbstständig oder in Gruppen bestimmte Aufgaben und erleben daher die Funktionalitäten praxisnah.
 		Bislang werden diese meist auf dem eigenen Computer oder in bereitgestellten virtuellen Maschinen gelöst.
-		Hierbei kommt es immer wieder zu Problemen durch die notwendige Einrichtung und verschiedenartie Konfigurationen.
+		Hierbei kommt es immer wieder zu Problemen durch die notwendige Einrichtung und verschiedenartige Konfigurationen.
 
-		\todo{Instantlab} 
-		
+		Ein besonderes innovatives Verfahren zur praxisnahen Lehre wird hierbei vom Hasso-Plattner-Institut angewendet.
+		Beim OpenStack basierten InstantLab ist es für Studenten nicht mehr notwendig, die Experimente auf eigener Hardware einzurichten und durchzuführen.
+		Stattdessen wird ein http-basiertes Interface angeboten, auf dem die Studenten nach einem Login mit ihrer Benutzerkennung (die Authentifikation erfolgt hierbei über den zentralen LDAP-Server des Instituts) auf Knopfdruck neue Instanzen eines VM-Templates erzeugen können. 
+		Diese Templates werden vorher vom Übungsleiter bei der Aufgabenstellung angelegt und enthalten jeweils die Konfiguration einer VM sowie ein Datenträgerimage mit installiertem Betriebssystem und den für das jeweilige Experiment notwendigen Dateien.
+		Die Experimente können ebenfalls vollständig im Webbrowser durchgeführt werden, dabei kommt eine Javascript basierte VNC Implementierung zum Einsatz.
+		Die VMs können dort am Ende gespeichert und zur Benotung eingereicht werden.
+		Sollten es im Laufe der Durchführung zu Problemen oder Fehlern kommen, kann die Instanz jederzeit gelöscht und neu aufgesetzt werden.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Thema der Arbeit}
 \label{sec:topic}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-				
-		%In dieser Arbeit soll die Möglichkeit zur praxisbezogenere Wissensvermittlung geschaffen werden. Es gilt zu zeigen, inwiefern eine zentrale und umfassende Darstellung mittels direkt von Studenten im Browser durchführbaren Experimenten möglich und umsetzbar ist.
+			
 
 
-		Ziel dieser Arbeit ist es, historische Betriebssysteme in virtuellen Maschinen auf moderner Hardware ausfürbar zu machen.
-		Mittels für diese Arbeit entwickelten und in diesen VMs ausführbaren Experimenten, sollen die Killer Features und die Neuerungen, aber auch die Nachteile der jeweiligen Betriebssysteme erlebbar gemacht werden.
+		%In dieser Arbeit sollen historische Betriebssysteme wieder ausführbar und erlebbar gemacht werden. 
+		Ziel dieser Arbeit ist es, historische Betriebssysteme heutzutage für Studenten ausführbar zu machen.
+		Da die damals verwedete Hardware schwer bis unmgölich zu replizieren ist, kommen hierbei virtuelle Maschinen zum Einsatz.
+		Außerdem sollen mittels für diese Arbeit entwickelten und in diesen VMs ausführbaren Experimenten die Killer Features und die Neuerungen, aber auch die Nachteile, der jeweiligen Betriebssysteme erlebbar gemacht werden.
 
-		Der Fokus liegt hierbei ausschließlich auf Betriebssystemen von Microsoft, da diese 
+		Am Ende sollen diese im o.g. InstantLab Studenten als Begleitmaterial zur Betriebssysteme 1 Vorlesung zur Verfügung gestellt werden.
+		
+		Eine besondere Schwierigkeit liegt dabei darin begründet, dass die relevanten Systeme aufgrund ihres Alters längst das Ende des Supportzeitraums erreicht haben und auch von den Herstellern der Hypervisoren nicht mehr unterstützt werden oder noch nie unterstützt wurden.
+		Daher existieren meist keine offiziellen Client-Treiber, dadurch ist insbesondere keine Paravirtualisierung möglich.
+		Zudem ist die heutzutage virtualiserte Hardware meist deutlich neuer als diejenige, mit denen die Systeme ursprünglich auf Kompatibilität getestet wurden.
+
+		Der Fokus liegt hierbei ausschließlich auf Betriebssystemen von Microsoft, da diese für heutige Programmierer die relevanteste Plattform darstellen.
+		Zudem wurde hierbei stets auf Kompatibilität mit den Vorgängerversionen geachtet;
+		insbesondere wurden allzu starke Veränderungen und komplette Neuentwicklungen größtenteils vermieden. 
+		Daher lässt sich auf dieser Plattform die evolutionäre Weiterentwicklung der Software besonders gut beobachten. \\ \\
+
+	
+		%Desweiteren wurden von Microsoft alle Betriebssysteme für die Intel x86-Plattform angeboten, so dass auf Veränderungen des Systems durch unterschiedliche Hardware nicht geachtet werden muss.
+		%Dass zwischenzeitlich auch andere Prozessoren, wie z.B. Itanium, von Windows NT unterstützt wurden, ist hierbei nicht von Relevanz. 
 
 		%Gezielt Microsoft, historische Betriebssysteme und Killer-Features. 
-		
-		Wie in Virtueller Umgebung?
-		
-		Struktur
+				
+		%Struktur
 
-		Am Ende sollen diese im InstantLab Studenten zur Verfügung gestellt werden.
-
-
-
-		
 		Im Kapitel \ref{chap:challenges} (\nameref{chap:challenges}) werden die wichtigsten Ziele und Anforderungen erfasst. 
 		Der Rest von Kapitel \ref{chap:challenges} ist der Recherche gewidmet; sowohl bestehende Lösungen als auch aktuelle akademische Diskussionen werden betrachtet.
 		
