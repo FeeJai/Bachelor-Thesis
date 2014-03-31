@@ -106,18 +106,40 @@ Schließlich folgt eine Erklärung des erwarteten Verhalten und Möglichkeiten d
 	Ein häufiges Problem zur Zeit von MS DOS war der begrenze Speicherplatz. Mit MS DOS 6.0 wurde daher die Datenträgerkomprimierung DoubleSpace eingeführt.
 	Diese musste aus patentrechtlichen Gründen jedoch von Microsoft bald wieder entfernt werden und wurde mit DOS 6.22 durch DriveSpace, ein Programm mit ähnlicher Funktionsweise aber anderem Kompressionsalgorithmus ersetzt.
 
-		Volume vs. DIR
+	\begin{itemize}
+		\item Starten Sie die VM und legen Sie das mitgelieferte, leere 1,44MB-Diskettenimage in Laufwerk A: ein.
+		\item Erzeugen Sie mit dem Befehl Type eine Textdatei mit einer Größe von mindestens 1,5 MB.
+		Was passiert, wenn Sie versuchen, diese auf Volume A: zu kopieren?
+		\item Legen Sie mittels DriveSpace ein komprimiertes Dateisystem auf diesem Image an. Lesen Sie hierfür ggf. $help drvspace$.
+		\item Versuchen Sie erneut, die Textdatei auf Volume A: zu kopieren. 
+		\item Wie unterscheiden sich die Werte des $Volume$ und der $dir$-Kommandos?
+	\end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Windows 3.11}
+\section{Windows 3.11 for Workgroups}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 	\subsection{Netzwerk}
 
-	net use sub 
-	ToDo für andere Infrastruktur mglw. zu Hause SMB Server und Kommandofolgen
+		Windows 3.11 ermöglicht erstmals Datei- und Printersharing über das SMB-Protokoll.
+	
+		\begin{itemize}
+			\item Legen Sie zunächst eine Heimnetzgruppe auf mindestens zwei virtuellen Maschinen an.
+			\item Kopieren Sie eine Datei von ihrem Übungspartner.
+		\end{itemize}
 
-	\subsection{Internet Explorer 5.0}
+	\subsection{Internetzugriff}
+
+		Ebenfalls ab Windows 3.11 ist der Zugriff auf das Internet möglich.
+		Hierfür wurde das TCP/IP-Protokoll nachgerüstet. 
+
+		\begin{itemize}
+			\item Starten Sie den vorinstallierten Internet Explorer 5.
+			\item Rufen Sie nun einige Webseiten auf und vergleichen Sie, wie sehr sich das Internet in den letzten 20 Jahren gewandelt hat. Können Sie ein aktuelle Webseite finden, die fehlerfrei dargestellt wird?
+			\item Ebenfalls installiert ist der Netscape Navigator 4.
+		Dieser ist auf neuen CPUs durch einen Bug nicht lauffähig und stürzt beim Start ab. 
+		Warum stürzt hierbei das gesamte Betriebssystem ab?
+		\end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Windows NT 3.51}

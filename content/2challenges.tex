@@ -21,7 +21,8 @@ Detailliertere Informationen finden sich zudem in \cite{WinInt1} und auf \cite{W
 
 		Der vorgesehene Anwendungsfall ist die Übernahme der in dieser Arbeit erzeugten VMs mitsamt Experimenten in das InstantLab\footnote{\url{http://experiments.instantlab.org/about}}. 
 		In dieser Cloud-Umgebung für virtuelle Maschinen können ohne großen Aufwand die Experimente im Webbrowser durchgeführt werden. 
-		Durch die zentrale Verwaltung wird außerdem der Wartungsaufwand stark reduziert.
+		Zudem soll durch die zentrale Verwaltung auf einer einheitlichen Hardwareplattform der Wartungsaufwand stark reduziert werden.
+		Von Vorteil ist hier die Verwendung von OpenStack, da durch diesen einheitlichen Standard ein Vendor-Lock-in größtenteils vermieden wird und ohne größere Schwierigkeiten zwischen eigener und fremder Hardware auf einer Plattform-as-a-Service gewechselt werden kann.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -31,18 +32,24 @@ Detailliertere Informationen finden sich zudem in \cite{WinInt1} und auf \cite{W
 
 		Aus den oben genannten Zielen ergeben sich detaillierte Anforderungen an die Beschaffenheit der Virtuellen Maschinen wie die Funktionalität des InstantLabs.
 
-		Auf Didaktik wird verzichtet
-				
 		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		\subsection{Funktionale Anforderungen}
 		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-		Use Case Diagramm
 
-		Experiment -> Pakete
-		Kursleiter
-		Administrator
-				
+		Grundsätzlich können drei Akteure identifiziert werden:
+
+
+
+			\begin{figure}[h]
+				\begin{center}
+					\includegraphics[width=\textwidth]{img/usecases}
+					\caption{Use Case Diagramm des InstantLabs}
+					\label{fig:instantlab-usecases}
+				\end{center}
+			\end{figure}
+
+
 		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		\subsection{Nicht-Funktionale Anforderungen}
 		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

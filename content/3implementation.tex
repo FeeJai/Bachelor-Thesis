@@ -214,7 +214,7 @@ schlecht unterstützt
 	Die offizielle Dokumentation des "`Guest Support Status"' von KVM geht nur zurück bis Windows 95;
 	der Status lautet: "`no way!"' \cite{KVMStatus}.
 
-	Leider entsprachen die im Experiment gesammelten praktischen Erfahrungen relativ genau denen der durch die Dokumentation zu erwartenden und die Benutzung von KVM war nicht erfolgreich:
+	Leider entsprachen die im Experiment gesammelten praktischen Erfahrungen relativ genau denen der durch die Dokumentation zu erwartenden:
 	\begin{itemize}
 		\item \emph{DOS 5.0} ist funktionsfähig bis 1 MB Arbeitsspeicher. Windows 2.11 kann ohne Maus gestartet werden.
 		\item \emph{DOS 6.22} läuft, stürzt aber ab, sobald mittels $himem.sys$ oder $emm386$ der erweiterten Speicher adressiert werden soll. Dies macht den Betrieb von Windows 3.11 unmöglich.
@@ -222,4 +222,14 @@ schlecht unterstützt
 		\item \emph{Windows NT 4 SP6} läuft, allerdings existiert weder ein funktionsfähiger Maus-, noch ein Netzwerktreiber
 		\item \emph{Windows NT 2000 Professional} ist als einziges vollkommen funktionsfähig
 	\end{itemize}
+
+
+	Für diese Arbeit wurde versucht, die Guest-Additions von KVM für Windows 2000 auf Windows NT 3.51 zu portieren und den Grund für den Absturz zu debuggen.
+	Mangels heute verfügbarer Dokumentantion zur Treiberentwicklung unter diesem System, unzureichender technischer Dokumentation von KVM und weiter Teile des Linux Kernels und zu geringer Kenntnisse über die Funktionsweise von Hypervisoren waren diese Versuche nicht erfolgreich und wurden bald aufgegeben. 
+
+	Stattdessen wurde von Andreas Grapentin, dem Administrator des InstantLabs, vorgeschlagen, InstantLab zusätzlich mit VMWare Hypervisoren auszustatteten.
+	OpenNebula, die verwendete OpenStack Implementierung, ermöglicht neben KVM und VirtualBox die Anbindung von verschiedenen VMWare Produkten als Execution Hosts.
+	Die Wahl fällt hier auf den VMWare ESXi, eine kostenfreie Implementierung des VMWare ESX Servers als "`bare-metal Hypervisor"'. 
+
+	KVM wird daher in dieser Arbeit nicht weiter verfolgt, statt dessen wurden alle Virtuellen Maschinen auf Kompatibilität mit dem VMWare ESXi geprüft.
 
