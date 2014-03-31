@@ -172,6 +172,29 @@ Schließlich folgt eine Erklärung des erwarteten Verhalten und Möglichkeiten d
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 	\subsection{CSRSS}
+
+	Mit Windows NS wurde GDI vom CSRSS in den Kernelmode verschoben.
+	Die Ausgabe auf der Kommandozeile wird jedoch nach wie vor durch das CSRSS erledigt. 
+	Dieses ist ein Systemprozess im User-Mode, der standardmäßig mit der Schedulingpriorität 24 läuft.
+
+	Für dieses Experiment wurden zwei Executables erzeugt:
+		\begin{enumerate}
+			\item \emph{Experiment1.exe} ist eine CLI-Applikation die zweimal pro Sekunde einen Punkt auf die Kommandozeile schreibt, bis man sie beendet.
+			\item \emph{Experiment2.exe} lastet nach Anforderung die CPU für ca. 10 Sekunden mit einer Zählschleife aus.
+		\end{enumerate}
+
+	\begin{itemize}
+		\item Starten Sie Experiment1.exe und Experiment2.exe. 
+		\item Stellen Sie im Task-Manager die Prioritätsklasse 'Echtzeit' für beide Prozesse ein. Die Prozesse setzen die Priorität ihrer Threads auf \texttt{$THREAD\_PRIORITY\_HIGHEST$}, sodass diese insgesamt mit einer Schedulingpriorität von 26 laufen\footnote{\url{http://msdn.microsoft.com/en-us/library/windows/desktop/ms685100(v=vs.85).aspx}}.
+		\item Blockieren Sie nun die CPU mit Experiment2.exe. Obwohl beide Prozesse die gleiche Priorität haben, werden von Experiment1.exe keine Punkte mehr ausgegeben. Wieso?
+	\end{itemize}
+
+
+	\emph{Lösung:} Der Scheduler teilt beiden Prozessen wie erwartet die gleiche Rechenzeit zu.
+	Experiment1.exe übergibt die Ausgabe an das CSRSS und blockiert, bis diese durchgeführt wurde.
+	Da das CSRSS mit einer niedrigeren Priorität als Experiment2.exe läuft, wird dieses jedoch verdrängt.
+	Folglich erhält Experiment1.exe keine Rechenzeit mehr, bis die CPU von Experiment2.exe wieder freigegeben wird und das CSRSS aufgerufen wurde.
+
 	%\subsection{EXEType}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
