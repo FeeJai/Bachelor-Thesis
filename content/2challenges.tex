@@ -178,12 +178,41 @@ Detailliertere Informationen finden sich zudem in \cite{WinInt1} und auf \cite{W
 		\subsection{VMWare}
 		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-		Relevanz: Feld eröffnet, große Menge Hardware
+		Das Unternehmen VMWare wurde im Jahr 1998 gegründet mit dem Ziel, die Virtualisierung von x86-basierten Computern zu ermöglichten.
+		Im Juli 1999 veröffentlichte es VMWare Workstation, den erste für Endanwernder funktionsfähige Hypervisor unter Microsoft Windows auf x86.
+
+		Mit diesem auch kommerziell sehr erfolgreichen Produkt wurde Virtualisierung außerhalb von Mainframes möglich und bekannt. 
+		Insbesondere die Betriebssystem- und Treiberentwicklung konnte stark vereinfacht werden. 
+
+		Aufgrund der langen Erfahrung dieses Unternehmens werden die Produkte von vielen Personen nach wie vor als qualitativ führend angesehen. 
+		Besonders die clientseitigen Treiber erreichen beste Performance und Stabilitätswerte.
+		Auch gilt das VMWare Format, in dem die Images gespeicherts werden als eine Art de-facto-Standard und kann von fast allen anderen Produkten importiert werden.
+
+		Zudem werden durch den frühen Entwicklungsbeginn historische Betriebssysteme am besten unterstützt.
+		Beispielsweise wurde Windows NT 4 im Jahr 2000 durchaus noch häufig kommerziell eingesetzt.
+
+		Aus diesen Gründen wird im Rahem dieser Arbeit zunächst versucht, die Ziele mit Hypervisoren von VMWare zu erreichen.
 
 		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		\subsection{KVM}
 		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-		Relevanz: Standard reportoire, Open Source
 
+		Einen anderen Ansatz geht die Kernel-based Virtual Machine (KVM) von Linux, welche dieses zu einem Hypervisor erweitert. 
+		Anders als VMWare und die meisten anderen Produkte unterstützt diese kein binäres Umschreiben und benötigt somit Hardwareunterstützung.
+
+		Auch bietet sie kein User Interface sondern erzeugt mit $/dev/kvm$ lediglich ein virtuelles Device, über das eine Anwendung im User Mode auf den Hypervisor zugreifen kann.
+		Diese kann somit neue virtuelle Maschinen anlegen und konfigurieren, mit diesen kommunizieren und ihren Video-Output anzeigen, ohne selbst Operationen im Kernel Mode durchführen zu müssen.
+
+		Mittlerweile gibt es zahlreiche Clientanwendungen, die meist für Zugriff aus der Ferne optimiert sind. 
+		Workstation-ähnliche Funktionalität kann jedoch mit dem Emulator QEMU erreicht werden.
+		Besonders gut funktioniert KVM mit Linux als Gastbetriebssystem, da der Kernel bereits zahlreiche hochwertige Treiber zur Paravirtualisierung mitbringt, die meist von den gleichen Entwicklern wie KVM selbt gewartet werden.
+		Mit dem VirtIO Framework ist auch Paravirtualisierung von Windows-Guests möglich, welches aber nicht an die VMWare Guest Additions heranreicht.
+		%Insbesondere fehlt eine Hardwarebeschleunigung für 3D Grafik, weswegen zahlreiche Programme schlecht und nur sehr langsam gerendert werden können.
+
+		Aufgrund der großen Verbreitung von Linux im Serverbereich und unter Profis erfreut sich KVM zunehmender Beliebtheit.
+		Hauptanwendungszweck ist wegen der o.g. Einschränkungen die Bereitstellung von Linux-Guests in einem Cloud-Computing Umfeld.
+		Meist kommt dabei libVirt, eine universelle Bibliothek zur Konfiguration und zum Betrieb verschiedener Hypervisoren zum Einsatz. 
 		
+		Wegen der freien und quelloffenen Verfügbarkeit verwendet die zur Zeit in Betrieb befindliche Version von InstantLab ebenfalls KVM auf ihren execution hosts. 
+		Daher wird es in dieser Arbeit ebenfalls berücksichtigt.
