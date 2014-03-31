@@ -146,23 +146,49 @@ Schließlich folgt eine Erklärung des erwarteten Verhalten und Möglichkeiten d
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 	\subsection{NTFS}
-	Streams, Hidden files
-	lange vs. kurze Dateinamen
-	mehrere Namen pro File
+
+	Windows NT 3.51 wird mit dem neuartigen Dateisystem NTFS ausgeliefert. Hierbei besteht jede Datei aus beliebig vielen Datenströmen ("`Streams"'').
+	Außerdem kann eine Datei mehreren Namen, insbesondere einen 8+3-Kurznamen besitzen. 
+
+	\begin{itemize}
+		\item Starten Sie die Eingabeaufforderung über Main > Command Prompt
+		\item Erstellen Sie einen neuen Ordner und legen Sie die Textdatei uebung.txt an.
+		Speichern Sie hierbei den Text 'dcl' in den alternativen Stream 'alternativ.txt'\\
+		\texttt{echo \string"dcl\string" > uebung.txt:alternativ.txt}
+		\item Wie groß ist diese Textdatei laut Befehl \texttt{dir} und im Windows Explorer?
+		\item Editieren Sie die Textdatei in Notepad. Wieso ist diese Datei leer? 
+		\item Geben Sie einen Text ein. Wohin werden Daten gespeichert? Wie groß ist die Datei jetzt?
+		\item Öffnen Sie nun den alternativen Stream und führen Sie einige Änderungen durch: \\
+			\texttt{notepad uebung.txt:alternativ.txt}
+	\end{itemize}
 
 	\subsection{VGA im User Mode}
+
+	In Windows NT der 3. Generation wird die Grafik (GDI) vom Client-Server Runtime Subsystem im User-Mode erzeugt.
+	Was passiert, wenn Sie CSRSS im Task-Manager beenden?
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Windows NT 4.0 SP 6}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 	\subsection{CSRSS}
-	\subsection{EXEType}
+	%\subsection{EXEType}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Windows 2000 Professional}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-	\subsection{Active Directory}
-	\subsection{EFS?}
+	%\subsection{Active Directory}
+
+	\subsection{EFS}
+
+	Windows 2000 erlaubt die Verschlüsselung von Dateien, so dass diese selbst bei Versagen der ACLs vor unauthorisiertem Zugriff geschützt sind.
+
+	\begin{itemize}
+		\item Schützen Sie den Administratoraccount mit einem Kenntwort 
+		\item Legen Sie eine Textdatei im Ordner 'Eigene Dateien' an.
+		\item Wählen Sie die Option 'Inhalt verschlüsseln, um Daten zu schützen' in den Eigenschaften.
+		\item Legen Sie einen zweiten Useraccount mit Administratorrechten an.
+		\item Was passiert, wenn Sie von diesem Account auf die Datei zugreifen wollen?
+	\end{itemize}
 
