@@ -85,6 +85,8 @@ Detailliertere Informationen finden sich zudem in \cite{WinInt1} und auf \cite{W
 	Eine besondere Neugikeit von InstantLab besteht daher in der Möglichkeit, jederzeit nach einem Login neue Instanzen eines Experiments per Mausklick zu erzeugen. 
 	Eine bestimmte Hardwarekonfiguration oder manuelle Installation von Software entfällt im Gegensatz zum bisherigen Übungsbetrieb.
 		
+	Bemühungen die Geschichte von Computern und insbesondere die Entwicklung von Software zu Archivieren und zu Konservieren werden ebenfalls vom Computer History Museum in Mountain View unternommen.
+	Unlängst hat dieses den Source Code von MS DOS sowie Microsoft Word der ersten Generation veröffentlicht\footnote{\url{http://www.computerhistory.org/press/ms-source-code.html}}.
 
 		\subsection{Udacity}
 
@@ -147,15 +149,29 @@ Detailliertere Informationen finden sich zudem in \cite{WinInt1} und auf \cite{W
 \label{sec:technologies}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-		Allgemeines zur Plattform und zur Virtualisierung
 
-		Plattform Intel x86 / Microsoft wegen der durchgängigen Unterstützung. \cite{PopekGoldberg}
+		Betrachtet wird ausschließlich die Intel x86-Plattform.
+		Diese Plattform wurde von Microsoft durchgängig unterstützt, seit MS DOS für den ersten IBM PC, der mit einem Intel 8088 ausgestattet war, ausgeliefert wurde.
+		Durch den enormen Erfolg dieses PCs und seiner Klone wurde diese Architektur schnell zur am weitesten Verbreiteten und kommerziell Erfolgreichsten.
+		Die Weiterentwicklung, meist unter Federführung durch Intel, erfolgte stetig und konsequent. 
+		Trotzdem wird bis heute auf Binärkompatibilität geachtet, wodurch der Betrieb von historischer Software ohne Emulation der CPU ermöglicht wird. 
+		
+		Die Virtualisierung eines Computers dieser Plattform in Software gestaltet sich jedoch nicht unkompliziert.
+		Das durch \cite{PopekGoldberg} aufgestellte erste Virtualisierungstheorem besagt in vereinfachter Form, dass eine effiziente Virtualisierung möglich ist, sofern alle privilegierten Instruktionen einen Exception auslösen, falls diese im User Mode ausgeführt werden.
+		Somit kann die Anweisung abgefangen und durch den Hypervisor emuliert werden. 
+		Dies ist bei x86 jedoch nicht der Fall.
+		So existieren laut \cite{PentiumVirt} in der IA-32, der beim Pentium verwendeten Weiterentwicklung von x86, insgesamt 17 Operationen, die diese Bedingung verletzen.
+		Diese schlagen entweder fehl ohne eine Exception auszulösen oder zeigen unterschiedliches Verhalten im User bzw. im Kernel Mode.
 
-		Spezialfälle: Binary rewriting, manche Operationen schneller in Softwre als in Hardware
+		Derartige Spezialfälle müssen vom Hypervisor durch binäres Umschreiben (binary translation / binary rewriting) abgefangen werden. 
+		Dabei wird der Programmcode der ausgeführten Software in Echtzeit so verändert, dass diese Anweisungen umgangen und das Verhalten einer nativen CPU emuliert werden kann. 
+		Interessant hierbei ist, dass einige Operationen effizienter in Software als in Hardware ausführbar sind und damit die virtualisierten Hosts in manchen Fällen bessere Performanceeigenschaften zeigen als beim Betrieb direkt auf Hardware.
 
-		Warum ist Intel problematisch??
+		Im Jahr 2005 wurden die Befehlssatzerweiterungen AMD-V and Intel VT-x eingeführt.
+		Mit diesen ist es möglich x86-kompatible CPUs in einem Modus zu betreiben, in dem die Popek und Goldberg Virtualisierungstheoreme erfüllt werden. 
+		Durch diese Hardwareunterstützung kann auf das fehlerbehaftete binäre Umschreiben gänzlich verzichtet werden.
 
-		Typ 1/2 Virtualisierung (hier ggf. nicht relevant)
+		% Typ 1/2 Virtualisierung (hier ggf. nicht relevant)
 
 
 		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
