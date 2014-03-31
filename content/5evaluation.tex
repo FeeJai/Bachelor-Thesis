@@ -1,7 +1,7 @@
 %%% %%%%%%%%%%%%%%%%%%%%%%%%%%%% %%%
 %%% Main Chapter 5 : Evaluation  %%%
 %%% %%%%%%%%%%%%%%%%%%%%%%%%%%%% %%%
-\chapter{Fazit}
+\chapter{Zusammenfassung}
 \label{chap:evaluation}
 
 
@@ -10,9 +10,24 @@
 \label{sec:results}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+	Im Rahmen dieser Arbeit wurden insgesamt acht verschiedene, historische Betriebssysteme wieder in Betrieb genommen.
+
+	Bei allen außer MS DOS 1.0 gelingt die Benutzung auf moderner Hardware im VMWare-Hypervisor.
+	Hierfür wurden fertige virtuelle Maschinen erzeugt, welche in Zukunft im InstantLab verwendet werden können.
+
+	Es wurde ebenfalls versucht die gleichen Betriebssysteme unter Verwendung von KVM zu benutzen.
+	Dies war mangels Unterstützung des Hypervisors nicht erfolgreich.
+	Versuche KVM für die Verwendung älterer Betriebssysteme anzupassen und die Windows 2000 Treiber auf NT 4 zu portieren sind ebenfalls gescheitert.
+
+	Daher wurde beschlossen, sich ausschließlich auf VMWare zu konzentrieren; 
+	Andreas Grapentin erklärte, dass es ggf. in Zukunft möglich wäre die VMWare Unterstützung von OpenNebula zu aktiveren werden und Execution Hosts mit dem VMWare ESXi einzusetzen.
+	Zur Sicherheit wurden daher die VMs auf Kompatibilität mit ESXi getestet, der in Zukunft im InstantLab zusätzlich zum Einsatz kommen soll. \\ \\
+
+	In den erstellten VMs wurden dreizehn verschiedene Experimente eingerichtet, mit denen wichtige Killerfeatures und Neuerungen praktisch erprobt werden können.
+	Ein dazugehöriges Experimentierhandbuch erstellt, das die Teilnehmer bei der Durchführung der Experimente anleitet wurde in Kapitel \ref{chap:experiments} verfasst.
 
 
-		
+
 		
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
