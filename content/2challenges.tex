@@ -30,7 +30,10 @@ Detailliertere Informationen finden sich zudem in \cite{WinInt1} und auf \cite{W
 \label{sec:requirements}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-		Aus den oben genannten Zielen ergeben sich detaillierte Anforderungen an die Beschaffenheit der Virtuellen Maschinen wie die Funktionalität des InstantLabs.
+		Aus den oben genannten Zielen ergeben sich detaillierte Anforderungen an die Beschaffenheit der in den virtuellen Maschinen verpackten Experimente sowie die Funktionalität des InstantLabs.
+
+		Grundsätzlich werden wir üblich funktionale und nicht-funktionale Anforderungen unterschieden;
+		spezifische didaktische Anforderungen werden nicht behandelt und fallen in den Aufgabenbereich des jeweiligen Kursleiters. 
 
 		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		\subsection{Funktionale Anforderungen}
@@ -39,6 +42,11 @@ Detailliertere Informationen finden sich zudem in \cite{WinInt1} und auf \cite{W
 
 		Grundsätzlich können drei Akteure identifiziert werden:
 
+		\begin{enumerate}
+			\item \emph{Student} Teilenhmer einer Lehrveranstaltung. Von diesem werden Experimente durchgeführt und Ergebnisse zur Benotung eingereich.
+			\item \emph{Administrator} Verantwortlich für den Betrieb des InstantLabs und Kontaktperson bei technischen Problemen. Außerdem zuständig für die Erteilung und den Entzug von Zugriffsrechten
+			\item \emph{Kursleiter} Legt Experimente für Studenten an, hierzu werden Templates virtueller Maschinen eingerichtet und Datenträgerimages installiert. Benotet Studenten nach Abgabe der Ergebnisse.
+		\end{enumerate}
 
 
 			\begin{figure}[h]
@@ -54,11 +62,11 @@ Detailliertere Informationen finden sich zudem in \cite{WinInt1} und auf \cite{W
 		\subsection{Nicht-Funktionale Anforderungen}
 		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-		Isolation
-		Tamper-Proof
-		Acccount
-		evtl. Bewertung
-
+		\begin{enumerate}
+			\item \emph{Isolation} Ein Experiment darf andere nicht beeinflussen. Insbesondere dürfen Fehler bei der Durchführung keine Auswirkung auf die Durchführung des Experiments bei anderen Teilnehmern haben.
+			\item \emph{Tamper-Proof} Auch bei böswilliger Manipulation muss die Isolation gewährleistet werden, auch muss eine faire Bewertung und Schutz vor Betrug gewährleistet werden. Zudem müssen Maßnahmen gegen DOS-Angriffe durch Erzeugung von Überlast in den VMs und somit auf dem Execution Hosts getroffen werden. 
+			\item \emph{Geschwindigkeit} Der Zugriff erfolgt über das Internet. Eine unangenehme User Experience durch lange Ladezeiten, schlechte Responsiveness oder Darstellungsfehler stört die Konzentration und verschlechtert das Lernergebnis. Daher muss insbesondere auf eine schnelle Anbindung und geringe Übertragungsrate des VNC-Protokolls geachtet werden.
+		\end{enumerate}
 	
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -66,15 +74,31 @@ Detailliertere Informationen finden sich zudem in \cite{WinInt1} und auf \cite{W
 \label{sec:solutions}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		
+
+
+	Zum Vergleich werden die zwei wichtigsten Anbieter von Massive Online Open Courses aufgeführt. 
+	Während das Ziel des InstantLabs die Begleitung einer bestehenden Lehrveranstaltung ist, werden dort komplette Kurse für die Allgemeinheit angeboten. 
+	Im Gegensatz zu den Lehrveranstaltungen an Universitäten, für die eine Immatrikulation notwendig ist, existieren keine Kenntnisse über den User, seine Vorkenntnisse und bisherigen Noten. 
+
+	Auch bietet keines der Systeme bislang Live-Experimente an, meist werden lediglich Übungsaufgaben gestellt, die zum Beispiel mit Stift und Papier bearbeitet werden müssen. 
+
+	Eine besondere Neugikeit von InstantLab besteht daher in der Möglichkeit, jederzeit nach einem Login neue Instanzen eines Experiments per Mausklick zu erzeugen. 
+	Eine bestimmte Hardwarekonfiguration oder manuelle Installation von Software entfällt im Gegensatz zum bisherigen Übungsbetrieb.
+		
+
 		\subsection{Udacity}
 
 			Bei Udacity handelt es sich um ein vom Stanford-Professor Sebastian Thrun geschaffene Plattform zur Wissensvermittlung über das Internet.
-			Diese ist stark an den universitären Lehrbetrieb angelehnt, so gibt es Videoaufnahmen von Vorlesungen, Begleitlektüren und ein Diskussionsforum für alle Teilnehmer. 
+			Diese ist an den universitären Lehrbetrieb angelehnt, so gibt es Videoaufnahmen von Vorlesungen, Begleitlektüren und ein Diskussionsforum für alle Teilnehmer. 
+
+
 			Zudem wird ein Übungssystem angeboten, bei dem den Teilnehmern der Veranstaltung regelmäßig Aufgaben gestellt werden. Diese müssen selbstständig bearbeitet und anschließend über das System abgegeben werden.
 			Über dieses System erfolgt nach einer Korrektur, die in den meisten Fällen automatisch erfolgt, eine Bewertung.
 			Hierdurch kann der Lernfortschritt effizient kontrolliert werden. %Aufgabenabgabesystem
 
-			Die erste dort angebotene Lehrveranstaltung war die Vorlesung "`CS101 - Intro to Computer Science: Building a Search Engine"' der Stanford University aus dem Jahr 2011\footnote{http://de.wikipedia.org/wiki/Udacity}.
+			Die erste dort angebotene Lehrveranstaltung war die Vorlesung "`CS101 - Intro to Computer Science: Building a Search Engine"' der Stanford University im Jahr 2011\footnote{http://de.wikipedia.org/wiki/Udacity}.
+
+			Nach wie vor liegt der Fokus des Angebots in erster Linie auf dem Bereich Informatik, mittlerweile werden aber auch Kurse in anderen Fachbereichen, z.B. "`Intro to the Design of Everyday Things"' von Don Norman oder "`How to Build a Startup"' angeboten.
 
 
 			\begin{figure}[h]
@@ -85,9 +109,6 @@ Detailliertere Informationen finden sich zudem in \cite{WinInt1} und auf \cite{W
 				\end{center}
 			\end{figure}
 
-
-			Nach wie vor liegt der Fokus des Angebots in erster Linie auf dem Bereich Informatik, mittlerweile werden aber auch Kurse in anderen Fachbereichen, z.B. "`Intro to the Design of Everyday Things"' von Don Norman oder "`How to Build a Startup"' angeboten.
-
 			Besonderes Merkmal von Udacity ist, dass die Teilnehmer nach Abschluss der Lehrveranstaltungen eine Prüfung ablegen können und dafür ein Zeugnis erhalten.
 			Dies wird zum Teil über Firmenkooperationen (z.B. SalesForce) angeboten, bei denen die Teilnehmer eine offizielle Zertifizierung für das jeweilige Produkt erwerben.
 
@@ -96,11 +117,31 @@ Detailliertere Informationen finden sich zudem in \cite{WinInt1} und auf \cite{W
 
 		\subsection{Coursera}
 
-		Kein Wissen über User
-		keine Live-Experimente wie Instantlab
-		
-		Neugikeit: Instanz auf Knopfdruck
-		
+			Einen ähnlichen Ansatz verfolgt das ebenfalls von Stanford-Professoren gegründete Coursera.
+			Anders als bei Udacity werden die Vorlesungen jedoch nicht von coursera selbst, sondern von zahlreichen Partneruniversitäten erstellt.
+			In Deutschland nehmen die Lundwig-Maximilian-Universität München und die TU München teil\footnote{https://www.coursera.org/about/partners}. 
+			Das Lehrangebot ist hierbei deutlich größer als bei Udacity, am 31. März 2014 wurden 621 Lehrveranstaltungen angeboten, wobei der größte Teil mit 114 Veranstaltungen auf den Fachbereich "`Humanities"' entfällt.
+
+
+			\begin{figure}[h]
+				\begin{center}
+					\includegraphics[width=\textwidth]{img/coursera}
+					\caption{Benutzeroberfläche von Coursera}
+					\label{fig:screenshot-coursera}
+				\end{center}
+			\end{figure}
+
+
+			Die angebotene Plattform ähnelt dem Lehrbetrieb an Präsenzuniversitäten noch stärker als bei Udacity, der Hauptbestandteil sind  auf Video aufgezeichnete Vorlesungen, die von den Teilnehmern zu Hause angesehen werden sowie meist wöchentlich gestellte Übungsaufgaben, die selbstständig bearbeitet werden müssen.
+
+			Zudem starten und enden Kurse grundsaätzlich zu festen Terminen.
+			Danach werden diese archiviert, die Lehrmaterialien können nach wie vor besichtigt werden, jedoch ist keine Zertifizierung mehr möglich.
+			Dies ist für berufstätigen Personen von Nachteil, da diese nicht immer ausreichend Möglichkeiten zur Einhaltung der Fristen zur Verfügung haben und keine Rücksicht auf das individuelle Lerntempo und die freie Zeit genommen werden kann.
+			Ein weiterer Kritikpunkt bei coursera ist, dass die Bewertung von Übungsaufgaben durch andere Teilnehmer erfolgt.
+			Diese sind gelegentlich unzutreffend und frustrieren somit die Teilnehmer.
+			Entsprechend gering ist die Erfolgsquote, nach Medienberichten werden Lehrveranstaltungen von über 90\% der Teilnehmer vorzeitig abgebrochen. 
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Technologien}
 \label{sec:technologies}
