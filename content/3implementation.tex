@@ -4,7 +4,7 @@
 \chapter{Setup}
 \label{chap:setup}
 
-	In diesem Kapitel wird beschrieben, wie ausgewählte historische Betriebssysteme im Rahem dieser Arbeit wieder lauffähig gemacht wurden. Als Hypervisor kam, sofern nicht anderweitig vermerkt, VMWare Fusion Professional Version 6.0.2 auf Mac OS 10.9.2 zum Einsatz. 
+	In diesem Kapitel wird beschrieben, wie ausgewählte historische Betriebssysteme im Rahmen dieser Arbeit wieder lauffähig gemacht wurden. Als Hypervisor kam, sofern nicht anderweitig vermerkt, VMWare Fusion Professional Version 6.0.2 auf Mac OS 10.9.2 zum Einsatz. 
 	Die VMs werden zusammen mit dieser Arbeit eingereicht.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -13,7 +13,7 @@
 
 	MS DOS 1.0 stellt das erste Betriebssystem von Microsoft für die 8086-CPU dar. Es entstand durch eine Portierung von Tim Patersons QDOS auf den IBM PC und wurde mit diesem unter dem Namen IBM PC DOS vertrieben. \cite{WinHistory}
 	Beim hier verwendeten PC DOS 1.10 handelt es sich um eine fehlerbereinigte, im Juli '82 veröffentlichte Version, die technisch MS DOS 1.25 entspricht. 
-	Dieses Betriebssystem stelltgrößtenteils einen Nachbau von CP/M dar und war, außer durch das Vorhandensein des Dateisystems \gls{FAT}, wenig innovativ.
+	Dieses Betriebssystem stellt größtenteils einen Nachbau von CP/M dar und war, außer durch das Vorhandensein des Dateisystems \gls{FAT}, wenig innovativ.
 	Da es jedoch die Grundlage für den Erfolg von Microsoft und somit für alle späteren Betriebssysteme bildet, wird es in dieser Arbeit behandelt.
 
 	DOS unterstützt in der Version 1 noch keine Festplatten und kann lediglich 5,25" Disketten bis 160 KB adressieren. \cite{WinHistory}
@@ -24,9 +24,9 @@
 	Dieser Prozess ist in \cite{PCMinistry} beschrieben:
 
 	Der Bootsektor der Diskette entspricht noch nicht den gängingen Industriestandards.
-	So fehlt der BIOS Parameter Block, der bei allen FAT (ab DOS 2.0) und NTFS Dateisystemen den Aufbau des Datenträgersbeschreibt und Informationen über das Dateisystem enthält. Im vorliegenden Image ist dieser Bereich (ab Offsett 07h) freigelassen.
+	So fehlt der BIOS Parameter Block, der bei allen FAT (ab DOS 2.0) und NTFS Dateisystemen den Aufbau des Datenträgersbeschreibt und Informationen über das Dateisystem enthält. Im vorliegenden Image ist dieser Bereich (ab Offset 07h) freigelassen.
 	Modernere Betriebssysteme können die Diskette daher nicht lesen und geben aus, der Datenträger sei nicht korrekt formattiert. 
-	Zudem wird die "`Boot Sektor Signatur"' am Ende des ersten Sektors (55h bei Offsett 1FEh und AAh bei Offsett 1FFh), welche ein Medium als bootbar markiert, vom BIOS bei Start noch nicht überprüft. \cite{IBMTechRef} Daher fehlt auch diese auf der Diskette und in dem Image sind am Ende des Bootsektors lediglich Nullen zu finden.
+	Zudem wird die "`Boot Sektor Signatur"' am Ende des ersten Sektors (55h bei Offset 1FEh und AAh bei Offset 1FFh), welche ein Medium als bootbar markiert, vom BIOS bei Start noch nicht überprüft. \cite{IBMTechRef} Daher fehlt auch diese auf der Diskette und in dem Image sind am Ende des Bootsektors lediglich Nullen zu finden.
 	Daher verweigert der Emulator den Bootvorgang.
 	Ändert man mit einem Hex-Editor die Datei und schreibt 55AA an das Ende des Bootsektors, übergibt das BIOS die Kontrolle mittels JMP-Befehl an den in dem Image liegenden Code. Leider stürzt das System dann beim Bootvorgang ab.
 
@@ -133,10 +133,10 @@
 		\end{center}
 	\end{figure}
 
-	Stellt mal VMWare in den Kompatibilitätseinstellungen auf Version 8 des Hypervisors um, kennt es einen Modus für Windows 3.11, indem sich das Betriebssystem problemlos von den Diskettenimages installieren lässt. Leider gibt es keine VMWare Guest Additions für dieses Betriebssystem und somit funktionieren nach Installation weder Sound, Netzwerk noch CDROM\footnote{Die in diesem Kapitel installierten Treiber wurden alle von \cite{VMDriver} geladen}.
+	Stellt man VMWare in den Kompatibilitätseinstellungen auf Version 8 des Hypervisors um, kennt es einen Modus für Windows 3.11, in dem sich das Betriebssystem problemlos von den Diskettenimages installieren lässt. Leider gibt es keine VMWare Guest Additions für dieses Betriebssystem und somit funktionieren nach Installation weder Sound, Netzwerk noch CDROM\footnote{Die in diesem Kapitel installierten Treiber wurden alle von \cite{VMDriver} geladen}.
 
 	Da sowohl MS DOS als auch Windows vor Version 95 im Leerlauf busy waiting statt dem $HLT$-Befehl verwenden, ist die CPU der virtuellen Maschine zudem immer vollständig ausgelastet.
-	Dies ist besonders auf einem zentralen Cloud-System, bei dem viele virtuelle Maschinen parallel ausgeführt werden sollen sehr störend, da jede VM die ihr zur Verfügung stehenden Ressourcen somit voll belegt, auch wenn sie nicht benutzt werden.
+	Dies ist besonders auf einem zentralen Cloud-System, bei dem viele virtuelle Maschinen parallel ausgeführt werden sollen, sehr störend, da jede VM die ihr zur Verfügung stehenden Ressourcen somit voll belegt, auch wenn sie nicht benutzt werden.
 	Eine Lösung findet sich auf \cite{VMDriver} mit dem Programm "`CPUidle for DOS"' von Marton Balog.
 	Bei diesem handelt es sich um eine TSR, die das busy waiting von MS DOS überschreibt, statt dessen die CPU in dieser Zeit anhält und durch Interrupts wieder aufweckt.
 	Gleiches bewirkt unter Windows 3.11 der Treiber "`WQGHLT"' aus der selben Quelle.
@@ -149,7 +149,7 @@
 		\end{center}
 	\end{figure}
 
-	Die Netzwerkfuntkionalität kann aktiviert werden, indem der Treiber für die "`Advanced Micro Devices PCNET Family"' nachinstalliert wird.
+	Die Netzwerkfunktionalität kann aktiviert werden, indem der Treiber für die "`Advanced Micro Devices PCNET Family"' nachinstalliert wird.
 	Zudem muss explizit der TCP/IP-Protokolltreiber installiert werden, da Windows 3.11 standardmäßig nur die veralteteten Protokollen IPX/SPX und NetBEUI unterstützt.
 
 	Leider nicht mehr aktivieren lässt sich die Unterstützung für Audioausgabe, da VMWare die Karte SoundBlaster16 nur bis zur Version 6 emuliert.
@@ -180,7 +180,7 @@
 		\end{center}
 	\end{figure}
 
-	Zunächst muss beim Anlegen der virtuellen Maschine darauf geachtete werden beim Betriebssystem als Typ 'other' und nicht 'Windows NT' zu wählen.
+	Zunächst muss beim Anlegen der virtuellen Maschine darauf geachtet werden beim Betriebssystem als Typ 'other' und nicht 'Windows NT' zu wählen.
 	Vor der Start muss außerdem die .vmx-Datei in einem Texteditor geöffnet und die folgenden Änderungen durchgeführt werden:
 
 		\begin{itemize}
@@ -214,7 +214,7 @@
 
 	Nach Installation des Service Packs 6a lässt sich der Internet Explorer 6 installieren.
 	Damit ist Netzwerkzugriff möglich. 
-	Von Microsoft wird ebenfalls ein Post-SP6a Hotfixpaket angeboten \footnote{\url{http://support.microsoft.com/kb/299444/de}}, das ebenfalls installiert werden muss, damit die die VMWare Guest Additions funktionieren.
+	Von Microsoft wird ebenfalls ein Post-SP6a Hotfixpaket angeboten\footnote{\url{http://support.microsoft.com/kb/299444/de}}, das ebenfalls installiert werden muss, damit die die VMWare Guest Additions funktionieren.
 
 
 	Nach der Installation der Guest Additions läuft das System stabil und zuverlässig. 
@@ -236,7 +236,7 @@
 \section{Konvertierung in KVM und Integration ins InstantLab}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-	Obschon durhc OpenStack verschiedene Hypervisoren, wie KVM, VMWare und Hyper-V unterstützt werden\footnote{https://wiki.openstack.org/wiki/HypervisorSupportMatrix},
+	Obschon durhc OpenStack verschiedene Hypervisoren, wie KVM, VMWare und Hyper-V unterstützt werden\footnote{\url{https://wiki.openstack.org/wiki/HypervisorSupportMatrix}},
 	verwendet das InstantLab zum gegenwärtigen Zeitpunkt lediglich KVM Execution Hosts.
 	Aus diesem Grunde sollten die erzeugen VMWare-Images zu QEMU/KVM im Rahmen dieser Arbeit konvertiert werden.
 	Hierbei wurde nach Anleitung in \cite{VMVDiskMan} vorgegangen. 
