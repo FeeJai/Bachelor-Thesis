@@ -12,7 +12,16 @@
 
 	Im Rahmen dieser Arbeit wurden insgesamt acht verschiedene, historische Betriebssysteme wieder in Betrieb genommen.
 
-	Bei allen außer MS DOS 1.0 gelingt die Benutzung auf moderner Hardware im VMWare-Hypervisor.
+	Das erste Kapitel beginnt mit einer Abhandlung über praktische Experimente in der Lehrveranstaltung Betriebssysteme und über das InstantLab, mit der der Kontext beschrieben wird.
+	Danach folgt ein Exkurs über die Funktionsweise der Computer-Virtualisierung und die hierfür notwendigen theoretischen Anforderungen.
+	Anschließend wird auf die verwendete x86-Architektur eingegangen und erklärt, wieso diese zur Virtualisierung nicht unbedingt geeignet ist. 
+	Aufgrund der großen Verbreitung und der historischen Kontinuität in der Unterstützung von x86 durch Microsoft, wird trotzdem diese Architektur im weiteren Verlauf dieser Arbeit verwendet.
+
+	Im zweiten Kapitel wurde kurz auf die Anforderungen sowie vergleichbare Systeme eingegangen.
+	Besonders heraus sticht hier die Innovation des InstantLabs, für jeden Teilnehmer eigene Cloud-Instanzen per Mausklick zu erzeugen. \\ 
+
+	Danach wird die Erzeugung der virtuellen Maschinen beschrieben.
+	Bei allen Systemen außer MS DOS 1.0 gelingt die Benutzung auf moderner Hardware im VMWare-Hypervisor.
 	Hierfür wurden fertige virtuelle Maschinen erzeugt, welche in Zukunft im InstantLab verwendet werden können.
 
 	Es wurde ebenfalls versucht die gleichen Betriebssysteme unter Verwendung von KVM zu benutzen.
@@ -21,35 +30,51 @@
 
 	Daher wurde beschlossen, sich ausschließlich auf VMWare zu konzentrieren; 
 	Andreas Grapentin erklärte, dass es ggf. in Zukunft möglich wäre die VMWare Unterstützung von OpenNebula zu aktiveren werden und Execution Hosts mit dem VMWare ESXi einzusetzen.
-	Zur Sicherheit wurden daher die VMs auf Kompatibilität mit ESXi getestet, der in Zukunft im InstantLab zusätzlich zum Einsatz kommen soll. \\ \\
-
+	Zur Sicherheit wurden daher die VMs auf Kompatibilität mit ESXi getestet, der in Zukunft im InstantLab zusätzlich zum Einsatz kommen soll.
 	In den erstellten VMs wurden dreizehn verschiedene Experimente eingerichtet, mit denen wichtige Killerfeatures und Neuerungen praktisch erprobt werden können.
-	Ein dazugehöriges Experimentierhandbuch erstellt, das die Teilnehmer bei der Durchführung der Experimente anleitet wurde in Kapitel \ref{chap:experiments} verfasst.
+	Ein dazugehöriges Experimentierhandbuch, das die Teilnehmer bei der Durchführung der Experimente anleitet wurde in Kapitel \ref{chap:experiments} verfasst.
 
-
-
-		
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Zukünftige Erweiterungen}
 \label{sec:future}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+	Mit den Resultaten dieser Arbeit können bereits die wichtigsten Meilensteine auf dem Weg zum heutigen Betriebssystem praktisch erlebt werden.
+	Trotzdem gibt es noch zahlreiche Möglichkeiten die Versuche zu erweitern, um eine noch umfassendere und vollständigere Darstellung zu bieten. 
+
+
 		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-		\subsection{Weitere Betriebssysteme}
+		\subsection{Weitere Betriebssysteme und Architekturen}
 		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	
+		
+		Im Rahmen dieser Arbeit wurden ausschließlich Betriebssysteme von Microsoft behandelt.
+		Insbesondere im Serverbereich sind jedoch Unix-basierte Systeme weit verbreitet, von denen in der Vergangenheit die meisten Innovationen im Bereich Netzwerk- und Internettechnologien ausgingen.
+
+		Es wurde vom Autor erwogen eine Linux 0.1-VM einzurichten, diese Möglichkeit jedoch wegen der notwendigen Build-Umgebung auf einer historischen Minix-Basis wieder verworfen. 
+		Aus Gründen der Vollständigkeit sollten zusätzlich zu den Windows VMs verschiedene Versionen von Linux angeboten werden. 
+		Damit ließen sich auch gut die unterschiedlichen Entwicklungsphilosophien erleben.
+
+		Auch die Entwicklung anderer Betriebssysteme, wie z.B. Mac OS wird nicht betrachtet.
+		Aufgrund der besonderen Bedeutung dieses Systems für das Entstehen der graphischen Benutzerschnittstelle (GUIs) und der Bedienung eines Computers per Maus ist es im historischen Kontext wichtig. 
+		Problematisch hierbei ist, dass das originale Mac OS für Motorola 86k-Prozessoren entwickelt und später auf PowerPC portiert wurde.
+		Beide Architekturen sind nicht x86-kompatibel, die Betriebssysteme können daher nur in einem Emulator und nicht einer virtuellen Maschine ausgeführt werden.
+
 		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		\subsection{Experimente zu anderen Neuerungen}
-		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
-		
-		Killer-Features meist mehr als 1				
-		
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+
+		In dieser Arbeit wurden Experimente zu dreizehn verschiedenen Neuerungen erstellt.
+		Insbesondere beim Umstieg von der DOS- auf die NT-Plattform gab es jedoch zahlreiche weitere Veränderungen im Hintergrund, die bisher noch nicht behandelt wurden. 
+		Besonders zu den Themen \emph{Präemptives Multitasking, Speicherschutz} und \emph{Multi-User-Fähigkeit} sollten noch Experimente hinzugefügt werden.
 
 		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		\subsection{Didaktische Verbesserungen}
 		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+		Auch das im Kapitel 4 erstellte Experimentierhandbuch sollte ggf. vor Verwendung in einer Lehrveranstaltung nochmals überarbeitet werden. 
+		Aus Platzgründen wurden zum Teil die zu erwartenden Ergebnisse nicht beschrieben, sondern nur die notwendigen Schritte aufgeführt und relevante Fragen gestellt.
+		Sicherlich wäre hier eine Musterlösung mit detaillierten Erklärungen nützlich.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Fazit}
